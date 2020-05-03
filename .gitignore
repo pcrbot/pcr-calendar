@@ -1,0 +1,7 @@
+.vscode
+.idea
+*.py[cdo]
+*.bat
+*.sh
+data
+node_modules
