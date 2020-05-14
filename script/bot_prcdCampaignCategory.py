@@ -108,10 +108,12 @@ class PcrdCampaignCategory(IntEnum):
 
 
 short_name = {
-    'manaDungeon': '地下城mana',
+    'manaDungeon': '地下城',
     'masterCoinNormal': '大师币',
     'dropAmountNormal': 'N图',
     'dropAmountHard': 'H图',
+    'dropAmountEventNormal': '活动N图',
+    'dropAmountEventHard': '活动H图',
     'dropAmountShrine': '圣迹',
     'dropAmountTemple': '神殿',
     'manaExploration': '探索',

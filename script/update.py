@@ -82,15 +82,6 @@ def update(name, verurl, dburl):
                 'end_time': row[1],
             })
         for row in con.execute("""
-            SELECT a.start_time, a.end_time, b.title
-            FROM hatsune_schedule AS a JOIN event_story_data AS b ON a.event_id = b.value
-        """):
-            data.append({
-                'name': '活动：' + row[2],
-                'start_time': row[0],
-                'end_time': row[1],
-            })
-        for row in con.execute("""
             SELECT campaign_category, value, start_time, end_time
             FROM campaign_schedule
         """):
@@ -98,9 +89,27 @@ def update(name, verurl, dburl):
             if campaign_name is None:
                 continue
             data.append({
-                'name': campaign_name+' '+str(row[1]/1000)+'倍',
+                'name': campaign_name+str(row[1]/1000)+'倍',
                 'start_time': row[2],
                 'end_time': row[3],
+            })
+        for row in con.execute("""
+            SELECT start_time, end_time
+            FROM tower_schedule
+        """):
+            data.append({
+                'name': '露娜塔',
+                'start_time': row[0],
+                'end_time': row[1],
+            })
+        for row in con.execute("""
+            SELECT a.start_time, a.end_time, b.title
+            FROM hatsune_schedule AS a JOIN event_story_data AS b ON a.event_id = b.value
+        """):
+            data.append({
+                'name': '活动：' + row[2],
+                'start_time': row[0],
+                'end_time': row[1],
             })
     with open(os.path.join(distpath, name+'.json'), 'w') as j:
         json.dump(data, j, ensure_ascii=True, separators=(',', ':'))
