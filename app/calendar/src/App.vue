@@ -59,9 +59,11 @@ export default {
     var area = window.location.hash.substring(1);
     var apipath;
     if (area === "cn") {
-      apipath = "./cn.json";
+      apipath = "https://pcrbot.github.io/calendar-updater-action/cn.json";
     } else if (area === "jp") {
-      apipath = "./jp.json";
+      apipath = "https://pcrbot.github.io/calendar-updater-action/jp.json";
+    } else if (area === "tw") {
+      apipath = "https://pcrbot.github.io/calendar-updater-action/tw.json";
     } else {
       thisvue.$message({ type: "error", message: "此链接无效" });
       return;
